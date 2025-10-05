@@ -1,10 +1,13 @@
 (ns blog
   (:require
-   [clojure.java.io :as io]
+   [ai]
+   [clj-yaml.core :as yaml]
    [clojure.string :as str]
+   [com.climate.claypoole :as cp]
+   [cuerdas.core :as cstr]
+   [files :as file]
    [hiccup2.core :as h]
-   [markdown.core :as md]
-   [files :as file])
+   [markdown.core :as md])
   (:gen-class))
 
 ;; metadata in Markdown
@@ -62,9 +65,39 @@
          (map parse-md-file)
          (mapv render-main-page))))
 
+(defn add-keywords-description! [{:keys [metadata markdown]}]
+  (let [md-file-path (:md-path metadata)
+        frontmatter (str "---\n"
+                         (yaml/generate-string
+                          (-> metadata
+                              (dissoc :md-path))
+                          :dumper-options {:flow-style :block})
+                         "---\n\n")
+        md-no-header (cstr/replace markdown frontmatter "")
+        {:keys [keywords description]}
+        (ai/ask (str ai/prompt-keywords-n-description md-no-header))
+        frontmatter-updated (str "---\n"
+                                 (yaml/generate-string
+                                  (-> metadata
+                                      (dissoc :md-path)
+                                      (assoc :keywords keywords :description description))
+                                  :dumper-options {:flow-style :block})
+                                 "---\n\n")]
+    (spit md-file-path (str frontmatter-updated md-no-header))))
+
+(defn add-metadata
+  [posts-path]
+  (let [;; posts-path "content/post/"
+        files  (file/list-dir-files posts-path)]
+    (->> files
+         (map parse-md-file)
+         (remove #(seq (get-in % [:metadata :keywords])))
+         (cp/pmap 4 add-keywords-description!))))
+
 (defn process-posts
   [_]
   (let [posts-path "content/post/"
+        _ (add-metadata posts-path)
         files (file/list-dir-files posts-path)
         parsed-files (->> files
                           (map parse-md-file)
@@ -98,3 +131,4 @@
         (render-index-html))
     (render-main-pages)))
 
+#_(process-posts nil)
