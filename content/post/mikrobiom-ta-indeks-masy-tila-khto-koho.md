@@ -6,6 +6,18 @@ alias: mikrobiom-ta-indeks-masy-tila-khto-koho
 date: 11 July 2019
 images:
 - '![](../images/fat_mouse640.jpg)'
+keywords:
+- мікробіом
+- маса тіла
+- кишкові бактерії
+- фірмікути
+- бактероїди
+- Lactobacillus plantarum
+- Bifidobacterium
+- Akkermansia muciniphila
+- SCFAs
+- пробіотики
+description: 'Огляд зв''язку між мікробіомом кишечника та індексом маси тіла: роль різноманіття, фірмікутів проти бактероїдів, вплив SCFA, пробіотиків та потенційних мікробних терапій на втративу чи набір маси.'
 ---
 
 # Мікробіом та індекс маси тіла: хто кого?

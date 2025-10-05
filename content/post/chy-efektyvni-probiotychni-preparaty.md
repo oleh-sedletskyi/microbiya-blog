@@ -6,6 +6,19 @@ alias: chy-efektyvni-probiotychni-preparaty
 date: 07 June 2019
 images:
 - '![](../images/probiotics_300.jpg)'
+keywords:
+- пробіотики
+- пробіотичні препарати
+- мікробіом
+- Lactobacillus rhamnosus GG
+- LGG
+- Clostridium difficile
+- Saccharomyces boulardii
+- біфідобактерії
+- anti biotикотерапія
+- ' IBS'
+- недоношені немовлята
+description: 'Огляд сучасних пробіотичних препаратів: механізми дії, різновиди штамів, доказова ефективність при діареях, ІBD, гінекологічних інфекціях та перспективи застосування у майбутньому.'
 ---
 
 # Чи ефективні пробіотичні препарати?
