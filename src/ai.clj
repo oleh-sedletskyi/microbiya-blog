@@ -17,7 +17,8 @@
        "Given the following markdown document, return a JSON object with two fields: "
        "`keywords` (a list of 5–10 relevant keywords or phrases), and "
        "`description` (a concise 1–2 sentence summary). "
-       "The JSON should be compact and valid. Do not include any explanations.\n\n"
+       "The JSON should be compact and valid in the language of the document."
+       "Do not include any explanations.\n\n"
        "Markdown Content:\n\n"))
 
 (defn ask [input]
