@@ -29,6 +29,8 @@
                         (run 'build)
                         (http/serve {:port 7777 :dir "static"})
                         (deref (promise)))}
+         nrepl {:doc "run nrepl +flowstorm profile"
+                :task (shell "clojure -M:flowstorm:dev -m nrepl.cmdline")}
          watch {:requires [[pod.babashka.fswatcher :as fw]
                            [babashka.fs :as fs]]
                 :task (do
