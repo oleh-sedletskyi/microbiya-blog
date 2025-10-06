@@ -24,16 +24,18 @@
        "Markdown Content:\n\n"))
 
 (defn ask [input]
-  (->> @(hk-client/post "https://api.openai.com/v1/responses"
-                        {:headers
-                         {"Content-Type" "application/json"
-                          "Authorization" (format "Bearer %s" token)}
-                         :body
-                         (json/encode
-                          {:model (first models)
-                           :input input
-                           :reasoning
-                           {:effort "minimal"}})})
+  (->> @(hk-client/request
+         {:url "https://api.openai.com/v1/responses"
+          :method :post
+          :headers
+          {"Content-Type" "application/json"
+           "Authorization" (format "Bearer %s" (token))}
+          :body
+          (json/encode
+           {:model (first models)
+            :input input
+            :reasoning
+            {:effort "minimal"}})})
        :body
        (#(json/decode % keyword))
        :output
@@ -43,3 +45,7 @@
        first
        :text
        (#(json/decode % keyword))))
+
+#_(ask (str prompt-keywords-n-description
+            "Like http-kit server, http-kit client uses a lightweight "
+            "and efficient event-driven, non-blocking I/O model that offers:"))
