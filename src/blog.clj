@@ -95,9 +95,10 @@
          (cp/pmap 4 add-keywords-description!))))
 
 (defn process-posts
-  [_]
+  [{:keys [local?]}]
   (let [posts-path "content/post/"
-        _ (add-metadata posts-path)
+        ;; call ai api only locally (using token)
+        _ (when local? (add-metadata posts-path))
         files (file/list-dir-files posts-path)
         parsed-files (->> files
                           (map parse-md-file)
@@ -131,4 +132,4 @@
         (render-index-html))
     (render-main-pages)))
 
-#_(process-posts nil)
+#_(process-posts {:local? true})
