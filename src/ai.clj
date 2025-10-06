@@ -2,7 +2,9 @@
   (:require [cheshire.core :as json]
             [config]
             [org.httpkit.client :as hk-client]))
-(def token
+
+(defn token
+  []
   (-> (config/read "resources/secrets.edn" config/Config)
       :openai
       :token))
