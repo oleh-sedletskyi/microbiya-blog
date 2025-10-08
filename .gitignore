@@ -13,3 +13,7 @@ pom.xml.asc
 .nrepl-port
 .cpcache/
 .obsidian/
+public/
+.clj-kondo/
+.lsp/
+static/
