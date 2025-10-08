@@ -116,8 +116,7 @@
         parsed-files (->> files
                           (map parse-md-file)
                           (sort-by (fn [m] (-> (get-in m [:metadata :created])
-                                               ;; make sure date is as str
-                                               str))
+                                               (t/date)))
                                    #(compare %2 %1)))
         _ (println (str "Render " (count parsed-files) " posts"))
         rendered-files (->> parsed-files
@@ -137,7 +136,11 @@
                        [:hgroup
                         [:h2
                          [:a {:href html-path :class "contrast"} title]]
-                        [:small created]
+                        [:div
+                         [:small
+                          (->> created
+                               t/date
+                               (t/format ua-formatter))]]
                         (h/raw introtext)]])))
 
           [:hr]])
