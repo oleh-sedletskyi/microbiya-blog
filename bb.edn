@@ -36,11 +36,13 @@
                 :task (do
                         (println "Watching...")
                         (doseq [dir ["content" "resources" "template"]]
+                          (println dir)
                           (fw/watch dir
                                     (fn [event]
                                       (println "Reloading...")
                                       ;; reload all files
-                                      (->> (concat (fs/glob "src" "**.md") (fs/glob "src" "**.html"))
+                                      (->> (concat (fs/glob "src" "**.md")
+                                                   (fs/glob "src" "**.html"))
                                            (map (fn [f]
                                                   (load-file (.toString f))))
                                            doall)
