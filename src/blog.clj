@@ -7,14 +7,27 @@
    [cuerdas.core :as cstr]
    [files :as file]
    [hiccup2.core :as h]
-   [markdown.core :as md])
+   [markdown.core :as md]
+   [tick.core :as t])
+  (:import [java.util Locale])
   (:gen-class))
+
+(def ua-formatter
+  (t/formatter "d MMMM yyyy" (Locale. "uk")))
 
 ;; metadata in Markdown
 ;; https://quarto.org/docs/authoring/front-matter.html
-(defn render-post-html [post]
+(defn render-post-html [{:keys [metadata] :as post}]
   (let [template (slurp "template/post.html")
-        updated (str/replace template #"CONTENT-TO-REPLACE" (:html post))
+        updated (-> template
+                    (str/replace #"CONTENT-TO-REPLACE" (:html post))
+                    (str/replace #"DATE-TO-REPLACE" (->> (:created metadata)
+                                                         t/date
+                                                         (t/format ua-formatter)))
+                    (str/replace #"DESCRIPTION-TO-REPLACE" (:description metadata))
+                    (str/replace #"TITLE-TO-REPLACE" (:title metadata))
+                    (str/replace #"KEYWORDS-TO-REPLACE" (->> (:keywords metadata)
+                                                             (str/join ","))))
         html-file (-> (get-in post [:metadata :md-path])
                       (file/file-path->name "html"))
         output-file (str "public/posts/" html-file)
