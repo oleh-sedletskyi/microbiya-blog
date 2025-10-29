@@ -138,6 +138,7 @@
                          [:a {:href html-path :class "contrast"} title]]
                         [:div
                          [:small
+                          {:style "float:right"}
                           (->> created
                                t/date
                                (t/format ua-formatter))]]
