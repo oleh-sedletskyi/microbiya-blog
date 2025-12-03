@@ -1,5 +1,5 @@
 ---
-introtext: <p> </p> <p><span>Щодня ми <a href="https://medlineplus.gov/lungdiseases.html">здійснюємо</a> 25 тисяч вдихів. Повітря потрапляє в наші легені, кисень із нього проникає в кров та далі до всіх клітин нашого тіла. Однак не лише кисень. </span><span>За <a href="https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health">даними</a> ВООЗ, більш як 90% населення планети проживає в місцях із якістю повітря, що не відповідає нормам.</span></p>
+introtext: Щодня ми <a href="https://medlineplus.gov/lungdiseases.html">здійснюємо</a> 25 тисяч вдихів. Повітря потрапляє в наші легені, кисень із нього проникає в кров та далі до всіх клітин нашого тіла. Однак не лише кисень. За <a href="https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health">даними</a> ВООЗ, більш як 90% населення планети проживає в місцях із якістю повітря, що не відповідає нормам.
 created: '2019-11-28'
 title: 'Забруднення повітря: наслідки та перспективи'
 alias: zabrudnennia-povitria-naslidky-ta-perspektyvy
