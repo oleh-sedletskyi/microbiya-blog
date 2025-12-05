@@ -88,7 +88,8 @@
                          "---\n\n")
         md-no-header (cstr/replace markdown frontmatter "")
         {:keys [keywords description]}
-        (ai/ask (str ai/prompt-keywords-n-description md-no-header))
+        (-> (ai/ask (str ai/prompt-keywords-n-description md-no-header))
+            (ai/decode-keyword))
         frontmatter-updated (str "---\n"
                                  (yaml/generate-string
                                   (-> metadata

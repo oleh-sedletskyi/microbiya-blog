@@ -1,7 +1,8 @@
 (ns ai
   (:require [cheshire.core :as json]
             [config]
-            [org.httpkit.client :as hk-client]))
+            [org.httpkit.client :as hk-client]
+            [markdown.core :as md]))
 
 (defn token
   []
@@ -43,8 +44,11 @@
        first
        :content
        first
-       :text
-       (#(json/decode % keyword))))
+       :text))
+
+(defn decode-keyword
+  [content]
+  (json/decode content keyword))
 
 #_(ask (str prompt-keywords-n-description
             "Like http-kit server, http-kit client uses a lightweight "
